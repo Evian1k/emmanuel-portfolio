@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | Emmanuel Evian | Software Developer Portfolio</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Blog posts by Emmanuel Evian, software developer. Insights on web development, React, Python, JavaScript, and modern web technologies.">
+    <meta name="keywords" content="Emmanuel Evian, Software Developer, Web Developer, React, Python, JavaScript, Blog, Web Development">
+    <meta name="author" content="Emmanuel Evian">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://emmanuelevian.dev/blog">
+    <meta property="og:title" content="Blog | Emmanuel Evian | Software Developer Portfolio">
+    <meta property="og:description" content="Blog posts by Emmanuel Evian, software developer. Insights on web development, React, Python, JavaScript, and modern web technologies.">
+    <meta property="og:image" content="https://emmanuelevian.dev/images/preview.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://emmanuelevian.dev/blog">
+    <meta property="twitter:title" content="Blog | Emmanuel Evian | Software Developer Portfolio">
+    <meta property="twitter:description" content="Blog posts by Emmanuel Evian, software developer. Insights on web development, React, Python, JavaScript, and modern web technologies.">
+    <meta property="twitter:image" content="https://emmanuelevian.dev/images/preview.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Emmanuel Evian",
+        "jobTitle": "Software Developer",
+        "description": "Creative Software Developer building beautiful, functional web experiences",
+        "url": "https://emmanuelevian.dev",
+        "image": "https://emmanuelevian.dev/images/profile.jpg",
+        "sameAs": [
+            "https://github.com/Evian1k",
+            "https://instagram.com/Rizy_Glock"
+        ],
+        "email": "emmanuelevian@gmail.com",
+        "telephone": "+254746720669"
+    }
+    </script>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+</head>
+
+<body>
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <p>Loading...</p>
+        </div>
+    </div>
+    
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html" class="nav-logo">
+                <span class="nav-logo-text">Evian</span>
+            </a>
+            
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="projects.html" class="nav-link">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blog.html" class="nav-link active">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-actions">
+                <button id="theme-toggle" class="nav-action-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="nav-toggle" class="nav-toggle" aria-label="Toggle Navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+    
+    <div id="mobile-menu" class="mobile-menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    
+    <main>
+        <section class="page-header section">
+            <div class="container">
+                <div class="page-header-content">
+                    <h1 class="page-title">Blog</h1>
+                    <p class="page-subtitle">Thoughts on web development and technology</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="blog-section section">
+            <div class="container">
+                <div class="blog-controls">
+                    <div class="blog-filters">
+                        <button class="filter-btn active" data-filter="all">All Posts</button>
+                        <button class="filter-btn" data-filter="web">Web Development</button>
+                        <button class="filter-btn" data-filter="react">React</button>
+                        <button class="filter-btn" data-filter="python">Python</button>
+                        <button class="filter-btn" data-filter="tips">Tips & Tricks</button>
+                    </div>
+                    
+                    <div class="blog-search">
+                        <input type="text" id="blog-search" placeholder="Search posts..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                </div>
+                
+                <div class="blog-grid" id="blog-grid">
+                    <article class="blog-card" data-category="web" data-aos="fade-up" data-aos-delay="100">
+                        <div class="blog-image">
+                            <img src="images/blog-1.jpg" alt="Modern Web Development" class="blog-img">
+                            <div class="blog-category">Web Development</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date"><i class="fas fa-calendar"></i> Dec 15, 2024</span>
+                                <span class="blog-read-time"><i class="fas fa-clock"></i> 5 min read</span>
+                            </div>
+                            <h2 class="blog-title">Modern Web Development: Best Practices for 2025</h2>
+                            <p class="blog-excerpt">
+                                Explore the latest trends and best practices in web development, from performance optimization to accessibility standards.
+                            </p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">Web Development</span>
+                                <span class="blog-tag">Performance</span>
+                                <span class="blog-tag">Accessibility</span>
+                            </div>
+                            <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                    
+                    <article class="blog-card" data-category="react" data-aos="fade-up" data-aos-delay="200">
+                        <div class="blog-image">
+                            <img src="images/blog-2.jpg" alt="React Performance" class="blog-img">
+                            <div class="blog-category">React</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date"><i class="fas fa-calendar"></i> Dec 10, 2024</span>
+                                <span class="blog-read-time"><i class="fas fa-clock"></i> 8 min read</span>
+                            </div>
+                            <h2 class="blog-title">Optimizing React Applications for Better Performance</h2>
+                            <p class="blog-excerpt">
+                                Learn advanced techniques to optimize your React applications, including code splitting, lazy loading, and memoization.
+                            </p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">React</span>
+                                <span class="blog-tag">Performance</span>
+                                <span class="blog-tag">Optimization</span>
+                            </div>
+                            <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                    
+                    <article class="blog-card" data-category="python" data-aos="fade-up" data-aos-delay="300">
+                        <div class="blog-image">
+                            <img src="images/blog-3.jpg" alt="Python Backend" class="blog-img">
+                            <div class="blog-category">Python</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date"><i class="fas fa-calendar"></i> Dec 5, 2024</span>
+                                <span class="blog-read-time"><i class="fas fa-clock"></i> 6 min read</span>
+                            </div>
+                            <h2 class="blog-title">Building Scalable Backends with Python and FastAPI</h2>
+                            <p class="blog-excerpt">
+                                Discover how to build high-performance, scalable backend services using Python and FastAPI framework.
+                            </p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">Python</span>
+                                <span class="blog-tag">FastAPI</span>
+                                <span class="blog-tag">Backend</span>
+                            </div>
+                            <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                    
+                    <article class="blog-card" data-category="tips" data-aos="fade-up" data-aos-delay="400">
+                        <div class="blog-image">
+                            <img src="images/blog-4.jpg" alt="Developer Tips" class="blog-img">
+                            <div class="blog-category">Tips & Tricks</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date"><i class="fas fa-calendar"></i> Nov 30, 2024</span>
+                                <span class="blog-read-time"><i class="fas fa-clock"></i> 4 min read</span>
+                            </div>
+                            <h2 class="blog-title">Essential Developer Tools Every Web Developer Should Know</h2>
+                            <p class="blog-excerpt">
+                                A comprehensive guide to the most useful development tools that will boost your productivity and code quality.
+                            </p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">Tools</span>
+                                <span class="blog-tag">Productivity</span>
+                                <span class="blog-tag">Development</span>
+                            </div>
+                            <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                    
+                    <article class="blog-card" data-category="web" data-aos="fade-up" data-aos-delay="500">
+                        <div class="blog-image">
+                            <img src="images/blog-5.jpg" alt="CSS Grid" class="blog-img">
+                            <div class="blog-category">Web Development</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date"><i class="fas fa-calendar"></i> Nov 25, 2024</span>
+                                <span class="blog-read-time"><i class="fas fa-clock"></i> 7 min read</span>
+                            </div>
+                            <h2 class="blog-title">Mastering CSS Grid: A Complete Guide to Modern Layouts</h2>
+                            <p class="blog-excerpt">
+                                Learn how to create complex, responsive layouts using CSS Grid and take your web design skills to the next level.
+                            </p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">CSS</span>
+                                <span class="blog-tag">Grid</span>
+                                <span class="blog-tag">Layout</span>
+                            </div>
+                            <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                    
+                    <article class="blog-card" data-category="react" data-aos="fade-up" data-aos-delay="600">
+                        <div class="blog-image">
+                            <img src="images/blog-6.jpg" alt="React Hooks" class="blog-img">
+                            <div class="blog-category">React</div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date"><i class="fas fa-calendar"></i> Nov 20, 2024</span>
+                                <span class="blog-read-time"><i class="fas fa-clock"></i> 9 min read</span>
+                            </div>
+                            <h2 class="blog-title">Advanced React Hooks: Custom Hooks and Best Practices</h2>
+                            <p class="blog-excerpt">
+                                Deep dive into React Hooks, learn how to create custom hooks, and understand the best practices for state management.
+                            </p>
+                            <div class="blog-tags">
+                                <span class="blog-tag">React</span>
+                                <span class="blog-tag">Hooks</span>
+                                <span class="blog-tag">State Management</span>
+                            </div>
+                            <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="blog-pagination" id="blog-pagination">
+                    <button class="pagination-btn active">1</button>
+                    <button class="pagination-btn">2</button>
+                    <button class="pagination-btn">3</button>
+                    <button class="pagination-btn next">Next <i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+        
+        <section class="newsletter-section section">
+            <div class="container">
+                <div class="newsletter-content">
+                    <h2 class="newsletter-title">Stay Updated</h2>
+                    <p class="newsletter-description">
+                        Subscribe to my newsletter for the latest insights on web development, 
+                        new projects, and industry trends.
+                    </p>
+                    <form class="newsletter-form" id="newsletter-form">
+                        <div class="newsletter-input-group">
+                            <input type="email" placeholder="Enter your email address" class="newsletter-input" required>
+                            <button type="submit" class="btn btn-primary newsletter-btn">
+                                <i class="fas fa-paper-plane"></i>
+                                Subscribe
+                            </button>
+                        </div>
+                        <div class="newsletter-status" id="newsletter-status"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="cta-title">Want to Collaborate?</h2>
+                    <p class="cta-description">
+                        Let's work together on your next project or discuss potential opportunities.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="contact.html" class="btn btn-primary">Get In Touch</a>
+                        <a href="projects.html" class="btn btn-outline">View My Work</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <a href="https://wa.me/254746720669" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-social">
+                    <a href="mailto:emmanuelevian@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://github.com/Evian1k" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://wa.me/254746720669" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://instagram.com/Rizy_Glock" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p class="footer-copyright">© 2025 Emmanuel Evian. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -4,57 +4,284 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projects | Emmanuel Evian</title>
-    <meta name="description" content="Portfolio projects by Emmanuel Evian, creative software developer." />
-    <link rel="icon" type="image/png" href="img/favicon.png" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/dark.css" id="dark-theme-style" disabled />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <title>Projects | Emmanuel Evian | Software Developer Portfolio</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Portfolio projects by Emmanuel Evian, creative software developer specializing in React, Python, JavaScript, and modern web technologies.">
+    <meta name="keywords" content="Emmanuel Evian, Software Developer, Web Developer, React, Python, JavaScript, Portfolio, Projects">
+    <meta name="author" content="Emmanuel Evian">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://emmanuelevian.dev/projects">
+    <meta property="og:title" content="Projects | Emmanuel Evian | Software Developer Portfolio">
+    <meta property="og:description" content="Portfolio projects by Emmanuel Evian, creative software developer specializing in React, Python, JavaScript, and modern web technologies.">
+    <meta property="og:image" content="https://emmanuelevian.dev/images/preview.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://emmanuelevian.dev/projects">
+    <meta property="twitter:title" content="Projects | Emmanuel Evian | Software Developer Portfolio">
+    <meta property="twitter:description" content="Portfolio projects by Emmanuel Evian, creative software developer specializing in React, Python, JavaScript, and modern web technologies.">
+    <meta property="twitter:image" content="https://emmanuelevian.dev/images/preview.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Emmanuel Evian",
+        "jobTitle": "Software Developer",
+        "description": "Creative Software Developer building beautiful, functional web experiences",
+        "url": "https://emmanuelevian.dev",
+        "image": "https://emmanuelevian.dev/images/profile.jpg",
+        "sameAs": [
+            "https://github.com/Evian1k",
+            "https://instagram.com/Rizy_Glock"
+        ],
+        "email": "emmanuelevian@gmail.com",
+        "telephone": "+254746720669"
+    }
+    </script>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
 </head>
 
 <body>
-    <header class="navbar">
-        <div class="logo">Evian</div>
-        <nav id="main-nav">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="about.html" class="nav-link">About</a>
-            <a href="projects.html" class="nav-link">Projects</a>
-            <a href="contact.html" class="nav-link">Contact</a>
-        </nav>
-        <div class="nav-actions">
-            <button id="dark-toggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
-            <button id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <p>Loading...</p>
         </div>
+    </div>
+    
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html" class="nav-logo">
+                <span class="nav-logo-text">Evian</span>
+            </a>
+            
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="projects.html" class="nav-link active">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blog.html" class="nav-link">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-actions">
+                <button id="theme-toggle" class="nav-action-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="nav-toggle" class="nav-toggle" aria-label="Toggle Navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
     </header>
+    
     <div id="mobile-menu" class="mobile-menu">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="projects.html">Projects</a>
         <a href="contact.html">Contact</a>
     </div>
+    
     <main>
-        <section class="projects-section fade-in">
-            <h1>My Projects</h1>
-            <div class="projects-grid" id="projects-grid">
-                <!-- Projects will be loaded here by JS -->
+        <section class="page-header section">
+            <div class="container">
+                <div class="page-header-content">
+                    <h1 class="page-title">My Projects</h1>
+                    <p class="page-subtitle">Showcasing my latest work</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="projects-section section">
+            <div class="container">
+                <div class="projects-controls">
+                    <div class="projects-filters">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="web">Web Apps</button>
+                        <button class="filter-btn" data-filter="mobile">Mobile</button>
+                        <button class="filter-btn" data-filter="api">APIs</button>
+                        <button class="filter-btn" data-filter="ui">UI/UX</button>
+                    </div>
+                    
+                    <div class="projects-search">
+                        <input type="text" id="projects-search" placeholder="Search projects..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    
+                    <div class="projects-sort">
+                        <select id="projects-sort" class="sort-select">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="name">Name A-Z</option>
+                            <option value="popularity">Most Popular</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="projects-grid" id="projects-grid">
+                    <!-- Projects will be loaded here by JavaScript -->
+                </div>
+                
+                <div class="projects-pagination" id="projects-pagination">
+                    <!-- Pagination will be generated by JavaScript -->
+                </div>
+                
+                <div class="projects-loading" id="projects-loading">
+                    <div class="loading-spinner"></div>
+                    <p>Loading projects...</p>
+                </div>
+                
+                <div class="projects-empty" id="projects-empty" style="display: none;">
+                    <div class="empty-state">
+                        <i class="fas fa-search"></i>
+                        <h3>No projects found</h3>
+                        <p>Try adjusting your search or filter criteria.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="github-section section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">GitHub Activity</h2>
+                    <p class="section-subtitle">My latest contributions and repositories</p>
+                </div>
+                
+                <div class="github-stats" id="github-stats">
+                    <div class="github-stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-number" id="repos-count">-</span>
+                            <span class="stat-label">Repositories</span>
+                        </div>
+                    </div>
+                    
+                    <div class="github-stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-number" id="stars-count">-</span>
+                            <span class="stat-label">Stars</span>
+                        </div>
+                    </div>
+                    
+                    <div class="github-stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-number" id="commits-count">-</span>
+                            <span class="stat-label">Commits</span>
+                        </div>
+                    </div>
+                    
+                    <div class="github-stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-number" id="followers-count">-</span>
+                            <span class="stat-label">Followers</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="github-repos" id="github-repos">
+                    <!-- GitHub repositories will be loaded here -->
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="cta-title">Have a Project in Mind?</h2>
+                    <p class="cta-description">
+                        Let's work together to bring your ideas to life. I'm here to help you create 
+                        something amazing.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="contact.html" class="btn btn-primary">Start a Project</a>
+                        <a href="about.html" class="btn btn-outline">Learn More About Me</a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
+    
     <a href="https://wa.me/254746720669" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
-    <footer>
-        <div class="footer-social">
-            <a href="mailto:emmanuelevian@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-            <a href="https://github.com/Evian1k" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://wa.me/254746720669" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://instagram.com/Rizy_Glock" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-social">
+                    <a href="mailto:emmanuelevian@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://github.com/Evian1k" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://wa.me/254746720669" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://instagram.com/Rizy_Glock" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p class="footer-copyright">© 2025 Emmanuel Evian. All rights reserved.</p>
+            </div>
         </div>
-        <p>© 2025 Emmanuel Evian</p>
     </footer>
-    <script src="js/darkmode.js"></script>
+    
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/language.js"></script>
     <script src="js/projects.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

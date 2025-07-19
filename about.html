@@ -4,101 +4,396 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About | Emmanuel Evian</title>
-    <meta name="description" content="About Emmanuel Evian, creative software developer specializing in web and app development." />
-    <link rel="icon" type="image/png" href="img/favicon.png" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/dark.css" id="dark-theme-style" disabled />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <title>About | Emmanuel Evian | Software Developer Portfolio</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="About Emmanuel Evian, creative software developer specializing in React, Python, JavaScript, and modern web technologies.">
+    <meta name="keywords" content="Emmanuel Evian, Software Developer, Web Developer, React, Python, JavaScript, Portfolio, About">
+    <meta name="author" content="Emmanuel Evian">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://emmanuelevian.dev/about">
+    <meta property="og:title" content="About | Emmanuel Evian | Software Developer Portfolio">
+    <meta property="og:description" content="About Emmanuel Evian, creative software developer specializing in React, Python, JavaScript, and modern web technologies.">
+    <meta property="og:image" content="https://emmanuelevian.dev/images/preview.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://emmanuelevian.dev/about">
+    <meta property="twitter:title" content="About | Emmanuel Evian | Software Developer Portfolio">
+    <meta property="twitter:description" content="About Emmanuel Evian, creative software developer specializing in React, Python, JavaScript, and modern web technologies.">
+    <meta property="twitter:image" content="https://emmanuelevian.dev/images/preview.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Emmanuel Evian",
+        "jobTitle": "Software Developer",
+        "description": "Creative Software Developer building beautiful, functional web experiences",
+        "url": "https://emmanuelevian.dev",
+        "image": "https://emmanuelevian.dev/images/profile.jpg",
+        "sameAs": [
+            "https://github.com/Evian1k",
+            "https://instagram.com/Rizy_Glock"
+        ],
+        "email": "emmanuelevian@gmail.com",
+        "telephone": "+254746720669"
+    }
+    </script>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
 </head>
 
 <body>
-    <header class="navbar">
-        <div class="logo">Evian</div>
-        <nav id="main-nav">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="about.html" class="nav-link">About</a>
-            <a href="projects.html" class="nav-link">Projects</a>
-            <a href="contact.html" class="nav-link">Contact</a>
-        </nav>
-        <div class="nav-actions">
-            <button id="dark-toggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
-            <button id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <p>Loading...</p>
         </div>
+    </div>
+    
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html" class="nav-logo">
+                <span class="nav-logo-text">Evian</span>
+            </a>
+            
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link active">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="projects.html" class="nav-link">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blog.html" class="nav-link">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-actions">
+                <button id="theme-toggle" class="nav-action-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="nav-toggle" class="nav-toggle" aria-label="Toggle Navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
     </header>
+    
     <div id="mobile-menu" class="mobile-menu">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="projects.html">Projects</a>
         <a href="contact.html">Contact</a>
     </div>
+    
     <main>
-        <section class="about-section fade-in">
-            <h1>About Me</h1>
-            <div class="about-bio">
-                <img src="images/profile.jpg" alt="Emmanuel Evian" class="profile-pic" />
-                <div>
-                    <p>
-                        I'm Emmanuel Evian, a creative Software Developer with a passion for building elegant, functional, and fast web applications. I specialize in HTML, CSS, JavaScript, React, Python, and Vite. I love solving real-world problems and building digital products that are actually useful and enjoyable to use.
-                    </p>
+        <section class="page-header section">
+            <div class="container">
+                <div class="page-header-content">
+                    <h1 class="page-title">About Me</h1>
+                    <p class="page-subtitle">Get to know me better</p>
                 </div>
             </div>
         </section>
-        <section class="skills-section fade-in">
-            <h2>My Skills</h2>
-            <div class="skills-list">
-                <div class="skill">
-                    <i class="fab fa-html5"></i>
-                    <span>HTML</span>
-                    <div class="skill-bar"><div class="skill-level" data-skill="95"></div></div>
+        
+        <section class="about-section section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="images/profile.jpg" alt="Emmanuel Evian" class="profile-image">
+                        <div class="about-image-overlay">
+                            <div class="about-stats">
+                                <div class="stat">
+                                    <span class="stat-number">3+</span>
+                                    <span class="stat-label">Years Experience</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">50+</span>
+                                    <span class="stat-label">Projects Completed</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">100%</span>
+                                    <span class="stat-label">Client Satisfaction</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-text">
+                        <h2 class="about-title">Creative Software Developer</h2>
+                        <p class="about-description">
+                            I'm Emmanuel Evian, a passionate Software Developer with expertise in modern web technologies. 
+                            I love creating elegant solutions to complex problems and building digital products that make a difference.
+                        </p>
+                        <p class="about-description">
+                            With over 3 years of experience in web development, I specialize in creating responsive, 
+                            user-friendly applications using React, Python, JavaScript, and other cutting-edge technologies. 
+                            My approach combines technical excellence with creative problem-solving to deliver exceptional user experiences.
+                        </p>
+                        <p class="about-description">
+                            When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, 
+                            or sharing knowledge with the developer community. I believe in continuous learning and staying 
+                            up-to-date with the latest industry trends.
+                        </p>
+                        
+                        <div class="about-actions">
+                            <a href="assets/Emmanuel_Evian_CV.pdf" class="btn btn-primary" download>
+                                <i class="fas fa-download"></i>
+                                <span>Download CV</span>
+                            </a>
+                            <a href="contact.html" class="btn btn-outline">
+                                <i class="fas fa-envelope"></i>
+                                <span>Get In Touch</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="skill">
-                    <i class="fab fa-css3-alt"></i>
-                    <span>CSS</span>
-                    <div class="skill-bar"><div class="skill-level" data-skill="90"></div></div>
+            </div>
+        </section>
+        
+        <section class="skills-section section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">My Skills</h2>
+                    <p class="section-subtitle">Technologies I work with</p>
                 </div>
-                <div class="skill">
-                    <i class="fab fa-js-square"></i>
-                    <span>JavaScript</span>
-                    <div class="skill-bar"><div class="skill-level" data-skill="92"></div></div>
+                
+                <div class="skills-grid">
+                    <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="skill-icon">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <h3 class="skill-name">HTML5</h3>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="95"></div>
+                            </div>
+                            <span class="skill-percentage">95%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="skill-icon">
+                            <i class="fab fa-css3-alt"></i>
+                        </div>
+                        <h3 class="skill-name">CSS3</h3>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="90"></div>
+                            </div>
+                            <span class="skill-percentage">90%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="skill-icon">
+                            <i class="fab fa-js-square"></i>
+                        </div>
+                        <h3 class="skill-name">JavaScript</h3>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="92"></div>
+                            </div>
+                            <span class="skill-percentage">92%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="skill-icon">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <h3 class="skill-name">React</h3>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="88"></div>
+                            </div>
+                            <span class="skill-percentage">88%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card" data-aos="fade-up" data-aos-delay="500">
+                        <div class="skill-icon">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <h3 class="skill-name">Python</h3>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="85"></div>
+                            </div>
+                            <span class="skill-percentage">85%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card" data-aos="fade-up" data-aos-delay="600">
+                        <div class="skill-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3 class="skill-name">Databases</h3>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="80"></div>
+                            </div>
+                            <span class="skill-percentage">80%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card" data-aos="fade-up" data-aos-delay="700">
+                        <div class="skill-icon">
+                            <i class="fab fa-node-js"></i>
+                        </div>
+                        <h3 class="skill-name">Node.js</h3>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="82"></div>
+                            </div>
+                            <span class="skill-percentage">82%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card" data-aos="fade-up" data-aos-delay="800">
+                        <div class="skill-icon">
+                            <i class="fab fa-git-alt"></i>
+                        </div>
+                        <h3 class="skill-name">Git</h3>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="88"></div>
+                            </div>
+                            <span class="skill-percentage">88%</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="skill">
-                    <i class="fab fa-python"></i>
-                    <span>Python</span>
-                    <div class="skill-bar"><div class="skill-level" data-skill="85"></div></div>
+            </div>
+        </section>
+        
+        <section class="experience-section section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Experience & Education</h2>
+                    <p class="section-subtitle">My journey in software development</p>
                 </div>
-                <div class="skill">
-                    <i class="fab fa-react"></i>
-                    <span>React</span>
-                    <div class="skill-bar"><div class="skill-level" data-skill="88"></div></div>
+                
+                <div class="timeline">
+                    <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Software Developer</h3>
+                            <p class="timeline-company">Freelance & Contract Work</p>
+                            <p class="timeline-period">2022 - Present</p>
+                            <p class="timeline-description">
+                                Working on various projects including web applications, e-commerce platforms, 
+                                and custom software solutions for clients worldwide.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Web Development Certification</h3>
+                            <p class="timeline-company">Self-Taught & Online Courses</p>
+                            <p class="timeline-period">2021 - 2022</p>
+                            <p class="timeline-description">
+                                Completed comprehensive courses in React, Python, JavaScript, and modern web development practices.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-title">Computer Science Foundation</h3>
+                            <p class="timeline-company">University Studies</p>
+                            <p class="timeline-period">2020 - 2021</p>
+                            <p class="timeline-description">
+                                Studied computer science fundamentals, algorithms, data structures, and programming principles.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="skill">
-                    <i class="fas fa-flask"></i>
-                    <span>Flask</span>
-                    <div class="skill-bar"><div class="skill-level" data-skill="80"></div></div>
-                </div>
-                <div class="skill">
-                    <i class="fas fa-bolt"></i>
-                    <span>Vite</span>
-                    <div class="skill-bar"><div class="skill-level" data-skill="75"></div></div>
+            </div>
+        </section>
+        
+        <section class="cta section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="cta-title">Ready to Work Together?</h2>
+                    <p class="cta-description">
+                        Let's collaborate on your next project and create something amazing together.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="contact.html" class="btn btn-primary">Get In Touch</a>
+                        <a href="projects.html" class="btn btn-outline">View My Work</a>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
+    
     <a href="https://wa.me/254746720669" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
-    <footer>
-        <div class="footer-social">
-            <a href="mailto:emmanuelevian@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-            <a href="https://github.com/Evian1k" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://wa.me/254746720669" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://instagram.com/Rizy_Glock" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-social">
+                    <a href="mailto:emmanuelevian@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://github.com/Evian1k" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://wa.me/254746720669" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://instagram.com/Rizy_Glock" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p class="footer-copyright">© 2025 Emmanuel Evian. All rights reserved.</p>
+            </div>
         </div>
-        <p>© 2025 Emmanuel Evian</p>
     </footer>
-    <script src="js/darkmode.js"></script>
-    <script src="js/script.js"></script>
+    
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

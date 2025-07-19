@@ -4,75 +4,346 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact | Emmanuel Evian</title>
-    <meta name="description" content="Contact Emmanuel Evian, software developer. Email, WhatsApp, Instagram, GitHub." />
-    <link rel="icon" type="image/png" href="img/favicon.png" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/dark.css" id="dark-theme-style" disabled />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <title>Contact | Emmanuel Evian | Software Developer Portfolio</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Contact Emmanuel Evian, software developer. Get in touch for collaboration, project inquiries, or just to say hello.">
+    <meta name="keywords" content="Emmanuel Evian, Software Developer, Web Developer, Contact, Email, WhatsApp, Instagram, GitHub">
+    <meta name="author" content="Emmanuel Evian">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://emmanuelevian.dev/contact">
+    <meta property="og:title" content="Contact | Emmanuel Evian | Software Developer Portfolio">
+    <meta property="og:description" content="Contact Emmanuel Evian, software developer. Get in touch for collaboration, project inquiries, or just to say hello.">
+    <meta property="og:image" content="https://emmanuelevian.dev/images/preview.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://emmanuelevian.dev/contact">
+    <meta property="twitter:title" content="Contact | Emmanuel Evian | Software Developer Portfolio">
+    <meta property="twitter:description" content="Contact Emmanuel Evian, software developer. Get in touch for collaboration, project inquiries, or just to say hello.">
+    <meta property="twitter:image" content="https://emmanuelevian.dev/images/preview.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Emmanuel Evian",
+        "jobTitle": "Software Developer",
+        "description": "Creative Software Developer building beautiful, functional web experiences",
+        "url": "https://emmanuelevian.dev",
+        "image": "https://emmanuelevian.dev/images/profile.jpg",
+        "sameAs": [
+            "https://github.com/Evian1k",
+            "https://instagram.com/Rizy_Glock"
+        ],
+        "email": "emmanuelevian@gmail.com",
+        "telephone": "+254746720669"
+    }
+    </script>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
 </head>
 
 <body>
-    <header class="navbar">
-        <div class="logo">Evian</div>
-        <nav id="main-nav">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="about.html" class="nav-link">About</a>
-            <a href="projects.html" class="nav-link">Projects</a>
-            <a href="contact.html" class="nav-link">Contact</a>
-        </nav>
-        <div class="nav-actions">
-            <button id="dark-toggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
-            <button id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <p>Loading...</p>
         </div>
+    </div>
+    
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html" class="nav-logo">
+                <span class="nav-logo-text">Evian</span>
+            </a>
+            
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="projects.html" class="nav-link">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blog.html" class="nav-link">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link active">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-actions">
+                <button id="theme-toggle" class="nav-action-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="nav-toggle" class="nav-toggle" aria-label="Toggle Navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
     </header>
+    
     <div id="mobile-menu" class="mobile-menu">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="projects.html">Projects</a>
         <a href="contact.html">Contact</a>
     </div>
+    
     <main>
-        <section class="contact-section fade-in">
-            <h1>Contact Me</h1>
-            <form action="https://formspree.io/f/xayrjvbp" method="POST" class="contact-form" id="contactForm">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required />
+        <section class="page-header section">
+            <div class="container">
+                <div class="page-header-content">
+                    <h1 class="page-title">Get In Touch</h1>
+                    <p class="page-subtitle">Let's work together on your next project</p>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required />
+            </div>
+        </section>
+        
+        <section class="contact-section section">
+            <div class="container">
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h2 class="contact-title">Let's Connect</h2>
+                        <p class="contact-description">
+                            I'm always interested in new opportunities and exciting projects. 
+                            Whether you have a question, want to collaborate, or just want to say hello, 
+                            I'd love to hear from you!
+                        </p>
+                        
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h3>Email</h3>
+                                    <a href="mailto:emmanuelevian@gmail.com">emmanuelevian@gmail.com</a>
+                                    <p>I'll get back to you within 24 hours</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <div class="contact-icon">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h3>WhatsApp</h3>
+                                    <a href="https://wa.me/254746720669" target="_blank">+254 746 720669</a>
+                                    <p>Quick responses for urgent matters</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <div class="contact-icon">
+                                    <i class="fab fa-github"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h3>GitHub</h3>
+                                    <a href="https://github.com/Evian1k" target="_blank">github.com/Evian1k</a>
+                                    <p>Check out my latest projects and contributions</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <div class="contact-icon">
+                                    <i class="fab fa-instagram"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h3>Instagram</h3>
+                                    <a href="https://instagram.com/Rizy_Glock" target="_blank">@Rizy_Glock</a>
+                                    <p>Follow me for updates and behind-the-scenes</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-availability">
+                            <h3>Availability</h3>
+                            <p>I'm currently available for:</p>
+                            <ul class="availability-list">
+                                <li>Freelance projects</li>
+                                <li>Full-time opportunities</li>
+                                <li>Technical consulting</li>
+                                <li>Code reviews and mentoring</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form-container">
+                        <h2 class="form-title">Send Me a Message</h2>
+                        <form action="https://formspree.io/f/xayrjvbp" method="POST" class="contact-form" id="contactForm">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Full Name *</label>
+                                <input type="text" id="name" name="name" class="form-input" required>
+                                <div class="form-error" id="name-error"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email Address *</label>
+                                <input type="email" id="email" name="email" class="form-input" required>
+                                <div class="form-error" id="email-error"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject" class="form-label">Subject</label>
+                                <input type="text" id="subject" name="subject" class="form-input" placeholder="What's this about?">
+                                <div class="form-error" id="subject-error"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message" class="form-label">Message *</label>
+                                <textarea id="message" name="message" rows="6" class="form-textarea" required placeholder="Tell me about your project or inquiry..."></textarea>
+                                <div class="form-error" id="message-error"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-checkbox">
+                                    <input type="checkbox" id="privacy" name="privacy" required>
+                                    <span class="checkmark"></span>
+                                    I agree to the <a href="#" class="privacy-link">Privacy Policy</a> and consent to being contacted about my inquiry.
+                                </label>
+                                <div class="form-error" id="privacy-error"></div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary form-submit" id="submit-btn">
+                                <i class="fas fa-paper-plane"></i>
+                                <span>Send Message</span>
+                            </button>
+                            
+                            <div class="form-status" id="form-status"></div>
+                        </form>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+        </section>
+        
+        <section class="faq-section section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Frequently Asked Questions</h2>
+                    <p class="section-subtitle">Common questions about working with me</p>
                 </div>
-                <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Send</button>
-                <div id="form-status"></div>
-            </form>
-            <div class="contact-info">
-                <p><i class="fas fa-envelope"></i> <a href="mailto:emmanuelevian@gmail.com">emmanuelevian@gmail.com</a></p>
-                <p><i class="fab fa-github"></i> <a href="https://github.com/Evian1k" target="_blank">github.com/Evian1k</a></p>
-                <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/254746720669" target="_blank">+254 746 720669</a></p>
-                <p><i class="fab fa-instagram"></i> <a href="https://instagram.com/Rizy_Glock" target="_blank">@Rizy_Glock</a></p>
+                
+                <div class="faq-grid">
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="faq-question">
+                            <h3>What types of projects do you work on?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>I specialize in web applications, e-commerce platforms, mobile-responsive websites, APIs, and custom software solutions. I work with React, Python, JavaScript, and other modern technologies.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="faq-question">
+                            <h3>What's your typical project timeline?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Project timelines vary based on complexity. Simple websites take 1-2 weeks, while complex applications can take 1-3 months. I always provide detailed timelines during project planning.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="faq-question">
+                            <h3>Do you provide ongoing support?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes! I offer ongoing maintenance, updates, and support packages. I believe in building long-term relationships with clients and ensuring their projects continue to perform well.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="faq-question">
+                            <h3>What's your communication style?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>I maintain regular communication throughout projects with weekly updates, progress reports, and quick responses to questions. I'm available via email, WhatsApp, and scheduled calls.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="cta-title">Ready to Start Your Project?</h2>
+                    <p class="cta-description">
+                        Let's discuss your ideas and turn them into reality. I'm excited to work with you!
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="#contact-form" class="btn btn-primary">Start a Conversation</a>
+                        <a href="projects.html" class="btn btn-outline">View My Work</a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
+    
     <a href="https://wa.me/254746720669" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
-    <footer>
-        <div class="footer-social">
-            <a href="mailto:emmanuelevian@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-            <a href="https://github.com/Evian1k" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://wa.me/254746720669" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://instagram.com/Rizy_Glock" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-social">
+                    <a href="mailto:emmanuelevian@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://github.com/Evian1k" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://wa.me/254746720669" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://instagram.com/Rizy_Glock" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p class="footer-copyright">© 2025 Emmanuel Evian. All rights reserved.</p>
+            </div>
         </div>
-        <p>© 2025 Emmanuel Evian</p>
     </footer>
-    <script src="js/darkmode.js"></script>
-    <script src="js/script.js"></script>
+    
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
