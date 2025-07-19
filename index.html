@@ -4,31 +4,85 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Emmanuel Evian | Software Developer</title>
+    <title>Emmanuel Evian | Software Developer Portfolio</title>
+    <meta name="description" content="Creative Software Developer building beautiful, functional web experiences. Portfolio of Emmanuel Evian." />
+    <meta name="keywords" content="Emmanuel Evian, Software Developer, Portfolio, JavaScript, React, Python, Web Developer" />
+    <meta name="author" content="Emmanuel Evian" />
+    <meta property="og:title" content="Emmanuel Evian | Software Developer Portfolio" />
+    <meta property="og:description" content="Creative Software Developer building beautiful, functional web experiences." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="img/preview.png" />
+    <link rel="icon" type="image/png" href="img/favicon.png" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/dark.css" id="dark-theme-style" disabled />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
 
 <body>
+    <div id="loader">
+        <div class="spinner"></div>
+    </div>
     <header class="navbar">
         <div class="logo">Evian</div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="projects.html">Projects</a>
-            <a href="contact.html">Contact</a>
+        <nav id="main-nav">
+            <a href="index.html" class="nav-link" data-i18n="nav_home">Home</a>
+            <a href="about.html" class="nav-link" data-i18n="nav_about">About</a>
+            <a href="projects.html" class="nav-link" data-i18n="nav_projects">Projects</a>
+            <a href="contact.html" class="nav-link" data-i18n="nav_contact">Contact</a>
         </nav>
+        <div class="nav-actions">
+            <button id="lang-toggle" title="Switch Language"><i class="fas fa-language"></i></button>
+            <button id="dark-toggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
+            <button id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+        </div>
     </header>
-
-    <section class="hero fade-in">
-        <h1>Hello, I'm <span>Emmanuel Evian</span></h1>
-        <p>A passionate Software Developer building web experiences with JavaScript, React & more.</p>
-        <a href="projects.html" class="btn">View Projects</a>
-    </section>
-
+    <div id="mobile-menu" class="mobile-menu">
+        <a href="index.html" data-i18n="nav_home">Home</a>
+        <a href="about.html" data-i18n="nav_about">About</a>
+        <a href="projects.html" data-i18n="nav_projects">Projects</a>
+        <a href="contact.html" data-i18n="nav_contact">Contact</a>
+    </div>
+    <main>
+        <section class="hero fade-in">
+            <canvas id="bg-animation"></canvas>
+            <div class="hero-content">
+                <h1><span data-i18n="hero_hi">Hello, I'm</span> <span class="highlight">Emmanuel Evian</span></h1>
+                <h2 data-i18n="hero_role">Software Developer</h2>
+                <p class="hero-message" data-i18n="hero_msg">Creative Developer Building Beautiful, Functional Web Experiences.</p>
+                <div class="hero-btns">
+                    <a href="assets/Emmanuel_Evian_CV.pdf" class="btn" download data-i18n="download_cv"><i class="fas fa-download"></i> Download CV</a>
+                    <a href="contact.html" class="btn btn-alt" data-i18n="hire_me"><i class="fas fa-briefcase"></i> Hire Me</a>
+                </div>
+            </div>
+        </section>
+        <section class="testimonials fade-in">
+            <h3 data-i18n="testimonials_title">Testimonials</h3>
+            <div class="testimonials-list">
+                <blockquote>
+                    <p>"Emmanuel is a creative problem solver and a joy to work with!"</p>
+                    <footer>- Jane Doe, Product Manager</footer>
+                </blockquote>
+                <blockquote>
+                    <p>"Delivered our project on time with exceptional quality."</p>
+                    <footer>- John Smith, Startup Founder</footer>
+                </blockquote>
+            </div>
+        </section>
+    </main>
+    <a href="https://wa.me/254746720669" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
     <footer>
+        <div class="footer-social">
+            <a href="mailto:emmanuelevian@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/Evian1k" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://wa.me/254746720669" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://instagram.com/Rizy_Glock" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
         <p>© 2025 Emmanuel Evian</p>
     </footer>
-
+    <script src="js/lang.js"></script>
+    <script src="js/darkmode.js"></script>
     <script src="js/script.js"></script>
 </body>
 

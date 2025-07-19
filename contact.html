@@ -5,31 +5,75 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact | Emmanuel Evian</title>
+    <meta name="description" content="Contact Emmanuel Evian, software developer. Email, WhatsApp, Instagram, GitHub." />
+    <link rel="icon" type="image/png" href="img/favicon.png" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/dark.css" id="dark-theme-style" disabled />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
 
 <body>
     <header class="navbar">
         <div class="logo">Evian</div>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="projects.html">Projects</a>
-            <a href="contact.html">Contact</a>
+        <nav id="main-nav">
+            <a href="index.html" class="nav-link" data-i18n="nav_home">Home</a>
+            <a href="about.html" class="nav-link" data-i18n="nav_about">About</a>
+            <a href="projects.html" class="nav-link" data-i18n="nav_projects">Projects</a>
+            <a href="contact.html" class="nav-link" data-i18n="nav_contact">Contact</a>
         </nav>
+        <div class="nav-actions">
+            <button id="lang-toggle" title="Switch Language"><i class="fas fa-language"></i></button>
+            <button id="dark-toggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
+            <button id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+        </div>
     </header>
-
-    <section class="hero fade-in">
-        <h1>Contact Me</h1>
-        <p><strong>Email:</strong> <a href="mailto:emmanuelevian@gmail.com">emmanuelevian@gmail.com</a></p>
-        <p><strong>WhatsApp:</strong> <a href="https://wa.me/254746720669" target="_blank">+254 746 720669</a></p>
-        <p><strong>Instagram:</strong> <a href="https://instagram.com/Rizy_Glock" target="_blank">@Rizy_Glock</a></p>
-        <p><strong>GitHub:</strong> <a href="https://github.com/Evian1k" target="_blank">github.com/Evian1k</a></p>
-    </section>
-
+    <div id="mobile-menu" class="mobile-menu">
+        <a href="index.html" data-i18n="nav_home">Home</a>
+        <a href="about.html" data-i18n="nav_about">About</a>
+        <a href="projects.html" data-i18n="nav_projects">Projects</a>
+        <a href="contact.html" data-i18n="nav_contact">Contact</a>
+    </div>
+    <main>
+        <section class="contact-section fade-in">
+            <h1 data-i18n="contact_title">Contact Me</h1>
+            <form action="https://formspree.io/f/xayrjvbp" method="POST" class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name" data-i18n="contact_name">Name</label>
+                    <input type="text" id="name" name="name" required />
+                </div>
+                <div class="form-group">
+                    <label for="email" data-i18n="contact_email">Email</label>
+                    <input type="email" id="email" name="email" required />
+                </div>
+                <div class="form-group">
+                    <label for="message" data-i18n="contact_message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn" data-i18n="contact_send"><i class="fas fa-paper-plane"></i> Send</button>
+                <div id="form-status"></div>
+            </form>
+            <div class="contact-info">
+                <p><i class="fas fa-envelope"></i> <a href="mailto:emmanuelevian@gmail.com">emmanuelevian@gmail.com</a></p>
+                <p><i class="fab fa-github"></i> <a href="https://github.com/Evian1k" target="_blank">github.com/Evian1k</a></p>
+                <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/254746720669" target="_blank">+254 746 720669</a></p>
+                <p><i class="fab fa-instagram"></i> <a href="https://instagram.com/Rizy_Glock" target="_blank">@Rizy_Glock</a></p>
+            </div>
+        </section>
+    </main>
+    <a href="https://wa.me/254746720669" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
     <footer>
+        <div class="footer-social">
+            <a href="mailto:emmanuelevian@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/Evian1k" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://wa.me/254746720669" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://instagram.com/Rizy_Glock" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
         <p>© 2025 Emmanuel Evian</p>
     </footer>
+    <script src="js/lang.js"></script>
+    <script src="js/darkmode.js"></script>
     <script src="js/script.js"></script>
 </body>
 

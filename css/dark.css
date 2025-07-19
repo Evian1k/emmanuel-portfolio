@@ -1,0 +1,24 @@
+body.dark-mode {
+  background: #111;
+  color: #f8f8f8;
+}
+.navbar, footer, .mobile-menu, .about-section, .skills-section, .projects-section, .contact-section, .testimonials, .project-card, .contact-form, .contact-info {
+  background: #181818 !important;
+  color: #f8f8f8 !important;
+}
+#main-nav a, .mobile-menu a, .footer-social a, .project-links a, .contact-info a {
+  color: #fff !important;
+}
+#main-nav a:hover, .mobile-menu a:hover, .footer-social a:hover, .project-links a:hover, .contact-info a:hover {
+  color: red !important;
+}
+.btn, .btn-alt {
+  color: #fff !important;
+}
+.skill, .form-group input, .form-group textarea {
+  background: #222 !important;
+  color: #fff !important;
+}
+#loader {
+  background: #181818 !important;
+}
