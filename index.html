@@ -5,35 +5,118 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Emmanuel Evian | Software Developer Portfolio</title>
-    <meta name="description" content="Creative Software Developer building beautiful, functional web experiences. Portfolio of Emmanuel Evian." />
-    <meta name="keywords" content="Emmanuel Evian, Software Developer, Portfolio, JavaScript, React, Python, Web Developer" />
-    <meta name="author" content="Emmanuel Evian" />
-    <meta property="og:title" content="Emmanuel Evian | Software Developer Portfolio" />
-    <meta property="og:description" content="Creative Software Developer building beautiful, functional web experiences." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="images/preview.png" />
-    <link rel="icon" type="image/png" href="images/favicon.png" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/dark.css" id="dark-theme-style" disabled />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Creative Software Developer Emmanuel Evian building beautiful, functional web experiences. Specializing in React, Python, JavaScript, and modern web technologies.">
+    <meta name="keywords" content="Emmanuel Evian, Software Developer, Web Developer, React, Python, JavaScript, Portfolio, Full Stack Developer">
+    <meta name="author" content="Emmanuel Evian">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://emmanuelevian.dev/">
+    <meta property="og:title" content="Emmanuel Evian | Software Developer Portfolio">
+    <meta property="og:description" content="Creative Software Developer building beautiful, functional web experiences.">
+    <meta property="og:image" content="https://emmanuelevian.dev/images/preview.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://emmanuelevian.dev/">
+    <meta property="twitter:title" content="Emmanuel Evian | Software Developer Portfolio">
+    <meta property="twitter:description" content="Creative Software Developer building beautiful, functional web experiences.">
+    <meta property="twitter:image" content="https://emmanuelevian.dev/images/preview.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Emmanuel Evian",
+        "jobTitle": "Software Developer",
+        "description": "Creative Software Developer building beautiful, functional web experiences",
+        "url": "https://emmanuelevian.dev",
+        "image": "https://emmanuelevian.dev/images/profile.jpg",
+        "sameAs": [
+            "https://github.com/Evian1k",
+            "https://instagram.com/Rizy_Glock"
+        ],
+        "email": "emmanuelevian@gmail.com",
+        "telephone": "+254746720669"
+    }
+    </script>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
 </head>
 
 <body>
-    <div id="loader">
-        <div class="spinner"></div>
-    </div>
-    <header class="navbar">
-        <div class="logo">Evian</div>
-        <nav id="main-nav">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="about.html" class="nav-link">About</a>
-            <a href="projects.html" class="nav-link">Projects</a>
-            <a href="contact.html" class="nav-link">Contact</a>
-        </nav>
-        <div class="nav-actions">
-            <button id="dark-toggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
-            <button id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <p>Loading...</p>
         </div>
+    </div>
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html" class="nav-logo">
+                <span class="nav-logo-text">Evian</span>
+            </a>
+            
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link active">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="projects.html" class="nav-link">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blog.html" class="nav-link">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-actions">
+                <button id="lang-toggle" class="nav-action-btn" title="Switch Language" aria-label="Switch Language">
+                    <i class="fas fa-language"></i>
+                </button>
+                <button id="theme-toggle" class="nav-action-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="nav-toggle" class="nav-toggle" aria-label="Toggle Navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
     </header>
     <div id="mobile-menu" class="mobile-menu">
         <a href="index.html">Home</a>
@@ -42,29 +125,274 @@
         <a href="contact.html">Contact</a>
     </div>
     <main>
-        <section class="hero fade-in">
-            <canvas id="bg-animation"></canvas>
-            <div class="hero-content">
-                <h1><span>Hello, I'm</span> <span class="highlight">Emmanuel Evian</span></h1>
-                <h2>Software Developer</h2>
-                <p class="hero-message">Creative Developer Building Beautiful, Functional Web Experiences.</p>
-                <div class="hero-btns">
-                    <a href="assets/Emmanuel_Evian_CV.pdf" class="btn" download><i class="fas fa-download"></i> Download CV</a>
-                    <a href="contact.html" class="btn btn-alt"><i class="fas fa-briefcase"></i> Contact Me</a>
+        <section class="hero section" id="home">
+            <div class="hero-background">
+                <canvas id="hero-canvas"></canvas>
+                <div class="hero-particles"></div>
+            </div>
+            
+            <div class="hero-container container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <span class="hero-greeting">Hello, I'm</span>
+                        <span class="hero-name">Emmanuel Evian</span>
+                    </h1>
+                    <h2 class="hero-subtitle">Software Developer</h2>
+                    <p class="hero-description">
+                        Creative Developer Building Beautiful, Functional Web Experiences
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="assets/Emmanuel_Evian_CV.pdf" class="btn btn-primary" download>
+                            <i class="fas fa-download"></i>
+                            <span>Download CV</span>
+                        </a>
+                        <a href="contact.html" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i>
+                            <span>Contact Me</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <img src="images/hero-profile.png" alt="Emmanuel Evian" class="hero-profile">
+                </div>
+            </div>
+            
+            <div class="hero-scroll">
+                <a href="#about" class="scroll-down" aria-label="Scroll to About">
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+            </div>
+        </section>
+        <section class="about-preview section" id="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-subtitle">Get to know me better</p>
+                </div>
+                
+                <div class="about-preview-content">
+                    <div class="about-preview-text">
+                        <p>
+                            I'm a passionate Software Developer with expertise in modern web technologies. 
+                            I love creating elegant solutions to complex problems and building digital 
+                            products that make a difference.
+                        </p>
+                        <div class="about-stats">
+                            <div class="stat">
+                                <span class="stat-number">3+</span>
+                                <span class="stat-label">Years Experience</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">50+</span>
+                                <span class="stat-label">Projects Completed</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">100%</span>
+                                <span class="stat-label">Client Satisfaction</span>
+                            </div>
+                        </div>
+                        <a href="about.html" class="btn btn-outline">Learn More</a>
+                    </div>
+                    
+                    <div class="about-preview-image">
+                        <img src="images/about-preview.jpg" alt="Emmanuel Evian working" class="about-image">
+                    </div>
                 </div>
             </div>
         </section>
-        <section class="testimonials fade-in">
-            <h3>Testimonials</h3>
-            <div class="testimonials-list">
-                <blockquote>
-                    <p>"Emmanuel is a creative problem solver and a joy to work with!"</p>
-                    <footer>- Jane Doe, Product Manager</footer>
-                </blockquote>
-                <blockquote>
-                    <p>"Delivered our project on time with exceptional quality."</p>
-                    <footer>- John Smith, Startup Founder</footer>
-                </blockquote>
+        <section class="skills-preview section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">My Skills</h2>
+                    <p class="section-subtitle">Technologies I work with</p>
+                </div>
+                
+                <div class="skills-grid">
+                    <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="skill-icon">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <h3 class="skill-name">HTML5</h3>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="95"></div>
+                            </div>
+                            <span class="skill-percentage">95%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="skill-icon">
+                            <i class="fab fa-css3-alt"></i>
+                        </div>
+                        <h3 class="skill-name">CSS3</h3>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="90"></div>
+                            </div>
+                            <span class="skill-percentage">90%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="skill-icon">
+                            <i class="fab fa-js-square"></i>
+                        </div>
+                        <h3 class="skill-name">JavaScript</h3>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="92"></div>
+                            </div>
+                            <span class="skill-percentage">92%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="skill-icon">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <h3 class="skill-name">React</h3>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="88"></div>
+                            </div>
+                            <span class="skill-percentage">88%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card" data-aos="fade-up" data-aos-delay="500">
+                        <div class="skill-icon">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <h3 class="skill-name">Python</h3>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="85"></div>
+                            </div>
+                            <span class="skill-percentage">85%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card" data-aos="fade-up" data-aos-delay="600">
+                        <div class="skill-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3 class="skill-name">Databases</h3>
+                        <div class="skill-level">
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-level="80"></div>
+                            </div>
+                            <span class="skill-percentage">80%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="projects-preview section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-subtitle">Some of my recent work</p>
+                </div>
+                
+                <div class="projects-preview-grid" id="featured-projects">
+                    <!-- Featured projects will be loaded here -->
+                </div>
+                
+                <div class="projects-preview-action">
+                    <a href="projects.html" class="btn btn-primary">View All Projects</a>
+                </div>
+            </div>
+        </section>
+        <section class="testimonials section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">What People Say</h2>
+                    <p class="section-subtitle">Client testimonials and feedback</p>
+                </div>
+                
+                <div class="testimonials-slider" id="testimonials-slider">
+                    <div class="testimonial-slide active">
+                        <div class="testimonial-content">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left"></i>
+                                <p>"Emmanuel is an exceptional developer who delivered our e-commerce platform on time and exceeded our expectations. His attention to detail and problem-solving skills are outstanding."</p>
+                                <i class="fas fa-quote-right"></i>
+                            </div>
+                            <div class="testimonial-author">
+                                <img src="images/testimonial-1.jpg" alt="Sarah Johnson" class="testimonial-avatar">
+                                <div class="testimonial-info">
+                                    <h4 class="testimonial-name">Sarah Johnson</h4>
+                                    <p class="testimonial-position">Product Manager, TechCorp</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left"></i>
+                                <p>"Working with Emmanuel was a pleasure. He's not only technically skilled but also great at communication and understanding client needs. Highly recommended!"</p>
+                                <i class="fas fa-quote-right"></i>
+                            </div>
+                            <div class="testimonial-author">
+                                <img src="images/testimonial-2.jpg" alt="Michael Chen" class="testimonial-avatar">
+                                <div class="testimonial-info">
+                                    <h4 class="testimonial-name">Michael Chen</h4>
+                                    <p class="testimonial-position">Startup Founder, InnovateLab</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-slide">
+                        <div class="testimonial-content">
+                            <div class="testimonial-quote">
+                                <i class="fas fa-quote-left"></i>
+                                <p>"Emmanuel's expertise in React and Python helped us build a robust application that scales beautifully. He's a true professional and a great team player."</p>
+                                <i class="fas fa-quote-right"></i>
+                            </div>
+                            <div class="testimonial-author">
+                                <img src="images/testimonial-3.jpg" alt="Emily Rodriguez" class="testimonial-avatar">
+                                <div class="testimonial-info">
+                                    <h4 class="testimonial-name">Emily Rodriguez</h4>
+                                    <p class="testimonial-position">CTO, DataFlow Solutions</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonials-controls">
+                    <button class="testimonial-control prev" aria-label="Previous testimonial">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="testimonial-dots">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                    </div>
+                    <button class="testimonial-control next" aria-label="Next testimonial">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <section class="cta section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="cta-title">Ready to Start Your Project?</h2>
+                    <p class="cta-description">
+                        Let's work together to bring your ideas to life. I'm here to help you create 
+                        something amazing.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="contact.html" class="btn btn-primary">Get In Touch</a>
+                        <a href="projects.html" class="btn btn-outline">View My Work</a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
