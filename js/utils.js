@@ -1,29 +1,34 @@
-// Utility functions for Emmanuel Evian Portfolio
-
+// Utility Functions
 const Utils = {
-    // DOM Utilities
+    // DOM Manipulation
     dom: {
         // Get element by selector
-        get: (selector) => document.querySelector(selector),
-        
+        get: (selector) => {
+            return document.querySelector(selector);
+        },
+
         // Get all elements by selector
-        getAll: (selector) => document.querySelectorAll(selector),
-        
+        getAll: (selector) => {
+            return document.querySelectorAll(selector);
+        },
+
         // Create element with attributes
         create: (tag, attributes = {}, children = []) => {
             const element = document.createElement(tag);
             
             // Set attributes
-            Object.entries(attributes).forEach(([key, value]) => {
+            Object.keys(attributes).forEach(key => {
                 if (key === 'className') {
-                    element.className = value;
+                    element.className = attributes[key];
                 } else if (key === 'textContent') {
-                    element.textContent = value;
+                    element.textContent = attributes[key];
+                } else if (key === 'innerHTML') {
+                    element.innerHTML = attributes[key];
                 } else {
-                    element.setAttribute(key, value);
+                    element.setAttribute(key, attributes[key]);
                 }
             });
-            
+
             // Append children
             children.forEach(child => {
                 if (typeof child === 'string') {
@@ -32,156 +37,213 @@ const Utils = {
                     element.appendChild(child);
                 }
             });
-            
+
             return element;
         },
-        
+
         // Add event listener with options
         on: (element, event, handler, options = {}) => {
             element.addEventListener(event, handler, options);
+            return () => element.removeEventListener(event, handler, options);
         },
-        
+
         // Remove event listener
-        off: (element, event, handler) => {
-            element.removeEventListener(event, handler);
+        off: (element, event, handler, options = {}) => {
+            element.removeEventListener(event, handler, options);
         },
-        
+
         // Toggle class
         toggleClass: (element, className) => {
             element.classList.toggle(className);
         },
-        
+
         // Add class
         addClass: (element, className) => {
             element.classList.add(className);
         },
-        
+
         // Remove class
         removeClass: (element, className) => {
             element.classList.remove(className);
         },
-        
+
         // Check if element has class
         hasClass: (element, className) => {
             return element.classList.contains(className);
+        },
+
+        // Set CSS custom property
+        setCSSProperty: (element, property, value) => {
+            element.style.setProperty(property, value);
+        },
+
+        // Get CSS custom property
+        getCSSProperty: (element, property) => {
+            return getComputedStyle(element).getPropertyValue(property);
+        },
+
+        // Get element dimensions
+        getDimensions: (element) => {
+            const rect = element.getBoundingClientRect();
+            return {
+                width: rect.width,
+                height: rect.height,
+                top: rect.top + window.scrollY,
+                left: rect.left + window.scrollX,
+                right: rect.right + window.scrollX,
+                bottom: rect.bottom + window.scrollY
+            };
+        },
+
+        // Check if element is in viewport
+        isInViewport: (element, threshold = 0) => {
+            const rect = element.getBoundingClientRect();
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+
+            return (
+                rect.top <= windowHeight * (1 - threshold) &&
+                rect.bottom >= windowHeight * threshold &&
+                rect.left <= windowWidth * (1 - threshold) &&
+                rect.right >= windowWidth * threshold
+            );
+        },
+
+        // Scroll element into view
+        scrollIntoView: (element, options = {}) => {
+            element.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+                inline: 'nearest',
+                ...options
+            });
         }
     },
 
     // Animation Utilities
     animation: {
-        // Fade in element
+        // Fade in animation
         fadeIn: (element, duration = 300, delay = 0) => {
             element.style.opacity = '0';
-            element.style.transition = `opacity ${duration}ms ease ${delay}ms`;
+            element.style.transition = `opacity ${duration}ms ease-in-out ${delay}ms`;
             
             setTimeout(() => {
                 element.style.opacity = '1';
             }, delay);
         },
-        
-        // Fade out element
-        fadeOut: (element, duration = 300, callback) => {
-            element.style.transition = `opacity ${duration}ms ease`;
-            element.style.opacity = '0';
+
+        // Fade out animation
+        fadeOut: (element, duration = 300, delay = 0) => {
+            element.style.transition = `opacity ${duration}ms ease-in-out ${delay}ms`;
             
             setTimeout(() => {
-                if (callback) callback();
-            }, duration);
-        },
-        
-        // Slide in from top
-        slideInTop: (element, duration = 300, delay = 0) => {
-            element.style.transform = 'translateY(-30px)';
-            element.style.opacity = '0';
-            element.style.transition = `all ${duration}ms ease ${delay}ms`;
-            
-            setTimeout(() => {
-                element.style.transform = 'translateY(0)';
-                element.style.opacity = '1';
+                element.style.opacity = '0';
             }, delay);
         },
-        
-        // Slide in from bottom
-        slideInBottom: (element, duration = 300, delay = 0) => {
-            element.style.transform = 'translateY(30px)';
-            element.style.opacity = '0';
-            element.style.transition = `all ${duration}ms ease ${delay}ms`;
+
+        // Slide down animation
+        slideDown: (element, duration = 300, delay = 0) => {
+            element.style.height = '0';
+            element.style.overflow = 'hidden';
+            element.style.transition = `height ${duration}ms ease-in-out ${delay}ms`;
             
             setTimeout(() => {
-                element.style.transform = 'translateY(0)';
-                element.style.opacity = '1';
+                element.style.height = element.scrollHeight + 'px';
             }, delay);
         },
-        
-        // Scale in
-        scaleIn: (element, duration = 300, delay = 0) => {
-            element.style.transform = 'scale(0.8)';
-            element.style.opacity = '0';
-            element.style.transition = `all ${duration}ms ease ${delay}ms`;
+
+        // Slide up animation
+        slideUp: (element, duration = 300, delay = 0) => {
+            element.style.height = element.scrollHeight + 'px';
+            element.style.overflow = 'hidden';
+            element.style.transition = `height ${duration}ms ease-in-out ${delay}ms`;
             
             setTimeout(() => {
-                element.style.transform = 'scale(1)';
-                element.style.opacity = '1';
+                element.style.height = '0';
             }, delay);
+        },
+
+        // Scale animation
+        scale: (element, scale = 1, duration = 300, delay = 0) => {
+            element.style.transform = `scale(${scale})`;
+            element.style.transition = `transform ${duration}ms ease-in-out ${delay}ms`;
+        },
+
+        // Rotate animation
+        rotate: (element, degrees = 0, duration = 300, delay = 0) => {
+            element.style.transform = `rotate(${degrees}deg)`;
+            element.style.transition = `transform ${duration}ms ease-in-out ${delay}ms`;
+        },
+
+        // Stagger animation for multiple elements
+        stagger: (elements, animation, staggerDelay = 100) => {
+            elements.forEach((element, index) => {
+                setTimeout(() => {
+                    animation(element);
+                }, index * staggerDelay);
+            });
         }
     },
 
-    // Browser Utilities
+    // Browser Detection
     browser: {
-        // Check if mobile device
+        // Check if browser supports Intersection Observer
+        supportsIntersectionObserver: () => {
+            return 'IntersectionObserver' in window;
+        },
+
+        // Check if browser supports CSS custom properties
+        supportsCSSVariables: () => {
+            return CSS.supports('--custom-property', 'value');
+        },
+
+        // Check if browser supports service workers
+        supportsServiceWorker: () => {
+            return 'serviceWorker' in navigator;
+        },
+
+        // Check if browser supports PWA install
+        supportsPWAInstall: () => {
+            return 'BeforeInstallPromptEvent' in window;
+        },
+
+        // Get browser name and version
+        getInfo: () => {
+            const userAgent = navigator.userAgent;
+            let browser = 'Unknown';
+            let version = 'Unknown';
+
+            if (userAgent.includes('Chrome')) {
+                browser = 'Chrome';
+                version = userAgent.match(/Chrome\/(\d+)/)?.[1] || 'Unknown';
+            } else if (userAgent.includes('Firefox')) {
+                browser = 'Firefox';
+                version = userAgent.match(/Firefox\/(\d+)/)?.[1] || 'Unknown';
+            } else if (userAgent.includes('Safari')) {
+                browser = 'Safari';
+                version = userAgent.match(/Version\/(\d+)/)?.[1] || 'Unknown';
+            } else if (userAgent.includes('Edge')) {
+                browser = 'Edge';
+                version = userAgent.match(/Edge\/(\d+)/)?.[1] || 'Unknown';
+            }
+
+            return { browser, version };
+        },
+
+        // Check if device is mobile
         isMobile: () => {
             return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         },
-        
-        // Check if iOS device
-        isIOS: () => {
-            return /iPad|iPhone|iPod/.test(navigator.userAgent);
-        },
-        
-        // Check if Android device
-        isAndroid: () => {
-            return /Android/.test(navigator.userAgent);
-        },
-        
-        // Get viewport dimensions
-        getViewport: () => {
-            return {
-                width: window.innerWidth || document.documentElement.clientWidth,
-                height: window.innerHeight || document.documentElement.clientHeight
-            };
-        },
-        
-        // Check if element is in viewport
-        isInViewport: (element) => {
-            const rect = element.getBoundingClientRect();
-            const viewport = this.getViewport();
-            
-            return (
-                rect.top >= 0 &&
-                rect.left >= 0 &&
-                rect.bottom <= viewport.height &&
-                rect.right <= viewport.width
-            );
-        },
-        
-        // Smooth scroll to element
-        scrollTo: (element, offset = 0) => {
-            const elementPosition = element.offsetTop - offset;
-            window.scrollTo({
-                top: elementPosition,
-                behavior: 'smooth'
-            });
-        },
-        
-        // Get scroll position
-        getScrollPosition: () => {
-            return window.pageYOffset || document.documentElement.scrollTop;
+
+        // Check if device is touch capable
+        isTouch: () => {
+            return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
         }
     },
 
-    // Storage Utilities
+    // Local Storage Management
     storage: {
-        // Set item in localStorage
+        // Set item
         set: (key, value) => {
             try {
                 localStorage.setItem(key, JSON.stringify(value));
@@ -191,8 +253,8 @@ const Utils = {
                 return false;
             }
         },
-        
-        // Get item from localStorage
+
+        // Get item
         get: (key, defaultValue = null) => {
             try {
                 const item = localStorage.getItem(key);
@@ -202,8 +264,8 @@ const Utils = {
                 return defaultValue;
             }
         },
-        
-        // Remove item from localStorage
+
+        // Remove item
         remove: (key) => {
             try {
                 localStorage.removeItem(key);
@@ -213,8 +275,8 @@ const Utils = {
                 return false;
             }
         },
-        
-        // Clear all localStorage
+
+        // Clear all items
         clear: () => {
             try {
                 localStorage.clear();
@@ -223,130 +285,193 @@ const Utils = {
                 console.error('Error clearing localStorage:', error);
                 return false;
             }
+        },
+
+        // Check if storage is available
+        isAvailable: () => {
+            try {
+                const test = '__storage_test__';
+                localStorage.setItem(test, test);
+                localStorage.removeItem(test);
+                return true;
+            } catch (error) {
+                return false;
+            }
         }
     },
 
     // Validation Utilities
     validation: {
-        // Validate email
+        // Email validation
         isValidEmail: (email) => {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return emailRegex.test(email);
         },
-        
-        // Validate phone number
+
+        // Phone validation
         isValidPhone: (phone) => {
             const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
             return phoneRegex.test(phone.replace(/\s/g, ''));
         },
-        
-        // Validate URL
-        isValidUrl: (url) => {
+
+        // URL validation
+        isValidURL: (url) => {
             try {
                 new URL(url);
                 return true;
-            } catch {
+            } catch (error) {
                 return false;
             }
         },
-        
-        // Validate required field
+
+        // Required field validation
         isRequired: (value) => {
-            return value && value.toString().trim().length > 0;
+            return value !== null && value !== undefined && value.toString().trim() !== '';
         },
-        
-        // Validate minimum length
-        hasMinLength: (value, minLength) => {
-            return value && value.toString().length >= minLength;
+
+        // Min length validation
+        minLength: (value, min) => {
+            return value && value.toString().length >= min;
         },
-        
-        // Validate maximum length
-        hasMaxLength: (value, maxLength) => {
-            return value && value.toString().length <= maxLength;
+
+        // Max length validation
+        maxLength: (value, max) => {
+            return value && value.toString().length <= max;
         }
     },
 
-    // Format Utilities
+    // Formatting Utilities
     format: {
         // Format date
         date: (date, options = {}) => {
             const defaultOptions = {
                 year: 'numeric',
                 month: 'long',
-                day: 'numeric'
+                day: 'numeric',
+                ...options
             };
             
-            return new Date(date).toLocaleDateString('en-US', {
-                ...defaultOptions,
-                ...options
-            });
+            return new Date(date).toLocaleDateString(undefined, defaultOptions);
         },
-        
+
         // Format number with commas
-        number: (number) => {
-            return number.toLocaleString();
+        number: (num) => {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         },
-        
+
+        // Format currency
+        currency: (amount, currency = 'USD', locale = 'en-US') => {
+            return new Intl.NumberFormat(locale, {
+                style: 'currency',
+                currency: currency
+            }).format(amount);
+        },
+
         // Format file size
         fileSize: (bytes) => {
             if (bytes === 0) return '0 Bytes';
             
             const k = 1024;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
             const i = Math.floor(Math.log(bytes) / Math.log(k));
             
             return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
         },
-        
+
         // Format duration
         duration: (seconds) => {
             const hours = Math.floor(seconds / 3600);
             const minutes = Math.floor((seconds % 3600) / 60);
             const secs = seconds % 60;
-            
+
             if (hours > 0) {
-                return `${hours}h ${minutes}m ${secs}s`;
-            } else if (minutes > 0) {
-                return `${minutes}m ${secs}s`;
+                return `${hours}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
             } else {
-                return `${secs}s`;
+                return `${minutes}:${secs.toString().padStart(2, '0')}`;
             }
+        },
+
+        // Truncate text
+        truncate: (text, length = 100, suffix = '...') => {
+            if (text.length <= length) return text;
+            return text.substring(0, length) + suffix;
+        },
+
+        // Capitalize first letter
+        capitalize: (text) => {
+            return text.charAt(0).toUpperCase() + text.slice(1);
+        },
+
+        // Convert to title case
+        titleCase: (text) => {
+            return text.replace(/\w\S*/g, (txt) => {
+                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            });
         }
     },
 
     // API Utilities
     api: {
-        // Fetch with timeout
-        fetchWithTimeout: async (url, options = {}, timeout = 5000) => {
+        // Make API request with timeout
+        request: async (url, options = {}) => {
+            const defaultOptions = {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...options.headers
+                },
+                timeout: 10000,
+                ...options
+            };
+
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), timeout);
-            
+            const timeoutId = setTimeout(() => controller.abort(), defaultOptions.timeout);
+
             try {
                 const response = await fetch(url, {
-                    ...options,
+                    ...defaultOptions,
                     signal: controller.signal
                 });
-                
+
                 clearTimeout(timeoutId);
-                return response;
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                return await response.json();
             } catch (error) {
                 clearTimeout(timeoutId);
                 throw error;
             }
         },
-        
-        // Handle API response
-        handleResponse: async (response) => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            
-            const contentType = response.headers.get('content-type');
-            if (contentType && contentType.includes('application/json')) {
-                return await response.json();
-            } else {
-                return await response.text();
-            }
+
+        // GET request
+        get: (url, options = {}) => {
+            return Utils.api.request(url, { ...options, method: 'GET' });
+        },
+
+        // POST request
+        post: (url, data, options = {}) => {
+            return Utils.api.request(url, {
+                ...options,
+                method: 'POST',
+                body: JSON.stringify(data)
+            });
+        },
+
+        // PUT request
+        put: (url, data, options = {}) => {
+            return Utils.api.request(url, {
+                ...options,
+                method: 'PUT',
+                body: JSON.stringify(data)
+            });
+        },
+
+        // DELETE request
+        delete: (url, options = {}) => {
+            return Utils.api.request(url, { ...options, method: 'DELETE' });
         }
     },
 
@@ -364,7 +489,7 @@ const Utils = {
                 timeout = setTimeout(later, wait);
             };
         },
-        
+
         // Throttle function
         throttle: (func, limit) => {
             let inThrottle;
@@ -378,45 +503,128 @@ const Utils = {
                 }
             };
         },
-        
+
         // Measure execution time
-        measureTime: (func, name = 'Function') => {
+        measure: (name, fn) => {
             const start = performance.now();
-            const result = func();
+            const result = fn();
             const end = performance.now();
-            console.log(`${name} took ${(end - start).toFixed(2)}ms`);
+            console.log(`${name} took ${end - start} milliseconds`);
+            return result;
+        },
+
+        // Async measure execution time
+        measureAsync: async (name, fn) => {
+            const start = performance.now();
+            const result = await fn();
+            const end = performance.now();
+            console.log(`${name} took ${end - start} milliseconds`);
             return result;
         }
     },
 
     // Error Handling
     error: {
-        // Handle errors gracefully
-        handle: (error, context = '') => {
-            console.error(`Error in ${context}:`, error);
-            
-            // You can add error reporting service here
-            // Example: Sentry.captureException(error);
-            
-            return {
-                error: true,
-                message: error.message || 'An error occurred',
-                context
+        // Handle async errors
+        handleAsync: (asyncFn) => {
+            return asyncFn.catch(error => {
+                console.error('Async error:', error);
+                return null;
+            });
+        },
+
+        // Create error boundary
+        createBoundary: (errorHandler) => {
+            return (error, errorInfo) => {
+                console.error('Error caught by boundary:', error, errorInfo);
+                if (errorHandler) {
+                    errorHandler(error, errorInfo);
+                }
             };
         },
-        
-        // Create custom error
-        create: (message, code = 'UNKNOWN_ERROR') => {
-            const error = new Error(message);
-            error.code = code;
-            return error;
+
+        // Retry function with exponential backoff
+        retry: async (fn, maxAttempts = 3, delay = 1000) => {
+            for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+                try {
+                    return await fn();
+                } catch (error) {
+                    if (attempt === maxAttempts) {
+                        throw error;
+                    }
+                    await new Promise(resolve => setTimeout(resolve, delay * Math.pow(2, attempt - 1)));
+                }
+            }
+        }
+    },
+
+    // Miscellaneous Utilities
+    misc: {
+        // Generate random ID
+        generateId: (length = 8) => {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let result = '';
+            for (let i = 0; i < length; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        },
+
+        // Deep clone object
+        deepClone: (obj) => {
+            if (obj === null || typeof obj !== 'object') return obj;
+            if (obj instanceof Date) return new Date(obj.getTime());
+            if (obj instanceof Array) return obj.map(item => Utils.misc.deepClone(item));
+            if (typeof obj === 'object') {
+                const clonedObj = {};
+                for (const key in obj) {
+                    if (obj.hasOwnProperty(key)) {
+                        clonedObj[key] = Utils.misc.deepClone(obj[key]);
+                    }
+                }
+                return clonedObj;
+            }
+        },
+
+        // Merge objects
+        merge: (...objects) => {
+            return objects.reduce((result, obj) => {
+                return { ...result, ...obj };
+            }, {});
+        },
+
+        // Sleep function
+        sleep: (ms) => {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        },
+
+        // Copy to clipboard
+        copyToClipboard: async (text) => {
+            try {
+                await navigator.clipboard.writeText(text);
+                return true;
+            } catch (error) {
+                console.error('Failed to copy to clipboard:', error);
+                return false;
+            }
+        },
+
+        // Download file
+        downloadFile: (data, filename, type = 'text/plain') => {
+            const blob = new Blob([data], { type });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
         }
     }
 };
 
-// Export utilities
+// Export for use in other modules
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = Utils;
-} else {
-    window.Utils = Utils;
 }

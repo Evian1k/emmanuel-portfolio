@@ -1,40 +1,81 @@
 // Animations module for Emmanuel Evian Portfolio
 
 const Animations = {
-    // Initialize all animations
-    init() {
-        this.initScrollAnimations();
-        this.initHeroAnimations();
-        this.initSkillAnimations();
-        this.initParallaxEffects();
-        this.initTypingEffect();
-        this.initParticleSystem();
+    // Configuration
+    config: {
+        scrollThreshold: 0.1,
+        staggerDelay: 100,
+        duration: 800,
+        easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+        heroTypingSpeed: 100,
+        heroTypingDelay: 2000,
+        particleCount: 50,
+        skillBarDuration: 1500
     },
 
-    // Scroll-based animations using Intersection Observer
-    initScrollAnimations() {
-        const observerOptions = {
-            threshold: CONFIG.animations.scrollThreshold,
-            rootMargin: CONFIG.animations.scrollMargin
-        };
+    // State
+    state: {
+        observer: null,
+        animatedElements: new Set(),
+        typingInterval: null,
+        particleAnimation: null,
+        skillBarsAnimated: new Set()
+    },
 
-        const observer = new IntersectionObserver((entries) => {
+    // Initialize all animations
+    init() {
+        this.setupScrollAnimations();
+        this.setupHeroAnimations();
+        this.setupSkillBarAnimations();
+        this.setupParallaxEffects();
+        this.setupHoverAnimations();
+        this.setupParticleEffect();
+    },
+
+    // Setup scroll-based animations using Intersection Observer
+    setupScrollAnimations() {
+        if (!Utils.browser.supportsIntersectionObserver()) {
+            this.fallbackScrollAnimations();
+            return;
+        }
+
+        this.state.observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
+                if (entry.isIntersecting && !this.state.animatedElements.has(entry.target)) {
                     this.animateElement(entry.target);
-                    observer.unobserve(entry.target);
+                    this.state.animatedElements.add(entry.target);
                 }
             });
-        }, observerOptions);
+        }, {
+            threshold: this.config.scrollThreshold,
+            rootMargin: '0px 0px -50px 0px'
+        });
 
         // Observe elements with animation classes
         const animatedElements = document.querySelectorAll(
-            '[data-aos], .fade-in, .slide-in, .scale-in, .skill-card, .project-card'
+            '.animate-on-scroll, .fade-in, .slide-up, .slide-down, .slide-left, .slide-right, .scale-in, .rotate-in'
         );
 
         animatedElements.forEach(element => {
-            observer.observe(element);
+            this.state.observer.observe(element);
         });
+    },
+
+    // Fallback for browsers without Intersection Observer
+    fallbackScrollAnimations() {
+        const animatedElements = document.querySelectorAll('.animate-on-scroll');
+        
+        const checkScroll = Utils.performance.throttle(() => {
+            animatedElements.forEach(element => {
+                if (Utils.dom.isInViewport(element, 0.1) && !this.state.animatedElements.has(element)) {
+                    this.animateElement(element);
+                    this.state.animatedElements.add(element);
+                }
+            });
+        }, 100);
+
+        window.addEventListener('scroll', checkScroll);
+        checkScroll(); // Check on load
     },
 
     // Animate element based on data-aos attribute or class
@@ -84,6 +125,9 @@ const Animations = {
                 case 'flip-down':
                     this.flipDown(element, duration);
                     break;
+                case 'rotate-in':
+                    this.rotateIn(element, duration);
+                    break;
                 default:
                     this.fadeInUp(element, duration);
             }
@@ -98,15 +142,15 @@ const Animations = {
         return 'fade-up';
     },
 
-    // Hero section animations
-    initHeroAnimations() {
-        const hero = document.querySelector('.hero');
-        if (!hero) return;
+    // Setup hero section animations
+    setupHeroAnimations() {
+        const heroSection = document.querySelector('.hero');
+        if (!heroSection) return;
 
         // Animate hero content on load
-        const heroContent = hero.querySelector('.hero-content');
-        const heroImage = hero.querySelector('.hero-image');
-        const heroButtons = hero.querySelector('.hero-buttons');
+        const heroContent = heroSection.querySelector('.hero-content');
+        const heroImage = heroSection.querySelector('.hero-image');
+        const heroButtons = heroSection.querySelector('.hero-buttons');
 
         if (heroContent) {
             setTimeout(() => this.fadeInUp(heroContent, 800), 200);
@@ -121,10 +165,13 @@ const Animations = {
         }
 
         // Animate scroll indicator
-        const scrollIndicator = hero.querySelector('.scroll-down');
+        const scrollIndicator = heroSection.querySelector('.scroll-down');
         if (scrollIndicator) {
             this.animateScrollIndicator(scrollIndicator);
         }
+
+        // Setup typing effect
+        this.setupTypingEffect();
     },
 
     // Animate scroll indicator
@@ -132,160 +179,162 @@ const Animations = {
         element.style.animation = 'bounce 2s infinite';
     },
 
-    // Skill bar animations
-    initSkillAnimations() {
-        const skillBars = document.querySelectorAll('.skill-progress');
-        
-        const skillObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    this.animateSkillBar(entry.target);
-                    skillObserver.unobserve(entry.target);
-                }
+    // Setup typing effect for hero title
+    setupTypingEffect() {
+        const typingElement = document.querySelector('.typing-text');
+        if (!typingElement) return;
+
+        const texts = [
+            'Full Stack Developer',
+            'UI/UX Designer',
+            'Mobile Developer',
+            'Cloud Architect'
+        ];
+
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        const type = () => {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = this.config.heroTypingSpeed;
+
+            if (isDeleting) {
+                typeSpeed /= 2;
+            }
+
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = this.config.heroTypingDelay;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                typeSpeed = 500;
+            }
+
+            this.state.typingInterval = setTimeout(type, typeSpeed);
+        };
+
+        type();
+    },
+
+    // Setup skill bar animations
+    setupSkillBarAnimations() {
+        const skillBars = document.querySelectorAll('.skill-bar');
+        if (!skillBars.length) return;
+
+        const animateSkillBar = (skillBar) => {
+            if (this.state.skillBarsAnimated.has(skillBar)) return;
+
+            const progressBar = skillBar.querySelector('.skill-progress');
+            const percentage = skillBar.dataset.percentage || 0;
+            
+            if (progressBar) {
+                progressBar.style.width = '0%';
+                progressBar.style.transition = `width ${this.config.skillBarDuration}ms ease-out`;
+                
+                setTimeout(() => {
+                    progressBar.style.width = percentage + '%';
+                }, 100);
+
+                this.state.skillBarsAnimated.add(skillBar);
+            }
+        };
+
+        // Observe skill bars
+        if (this.state.observer) {
+            skillBars.forEach(skillBar => {
+                this.state.observer.observe(skillBar);
             });
-        }, { threshold: 0.5 });
-
-        skillBars.forEach(bar => skillObserver.observe(bar));
+        }
     },
 
-    // Animate skill bar progress
-    animateSkillBar(bar) {
-        const level = bar.getAttribute('data-level') || 0;
-        const duration = CONFIG.skills.animationDuration;
-        
-        bar.style.width = '0%';
-        bar.style.transition = `width ${duration}ms ease`;
-        
-        setTimeout(() => {
-            bar.style.width = `${level}%`;
-        }, 100);
-    },
+    // Setup parallax effects
+    setupParallaxEffects() {
+        const parallaxElements = document.querySelectorAll('.parallax');
+        if (!parallaxElements.length) return;
 
-    // Parallax effects
-    initParallaxEffects() {
-        const parallaxElements = document.querySelectorAll('[data-parallax]');
-        
-        window.addEventListener('scroll', Utils.performance.throttle(() => {
+        const handleParallax = Utils.performance.throttle(() => {
             const scrolled = window.pageYOffset;
             
             parallaxElements.forEach(element => {
-                const speed = element.getAttribute('data-parallax') || 0.5;
+                const speed = element.dataset.speed || 0.5;
                 const yPos = -(scrolled * speed);
                 element.style.transform = `translateY(${yPos}px)`;
             });
-        }, 16));
+        }, 16);
+
+        window.addEventListener('scroll', handleParallax);
     },
 
-    // Typing effect for hero title
-    initTypingEffect() {
-        const typingElement = document.querySelector('.hero-name');
-        if (!typingElement) return;
-
-        const text = typingElement.textContent;
-        typingElement.textContent = '';
-        typingElement.style.borderRight = '2px solid var(--primary-color)';
-
-        let i = 0;
-        const typeWriter = () => {
-            if (i < text.length) {
-                typingElement.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
-            } else {
-                // Remove cursor after typing is complete
-                setTimeout(() => {
-                    typingElement.style.borderRight = 'none';
-                }, 1000);
-            }
-        };
-
-        // Start typing effect after a delay
-        setTimeout(typeWriter, 1000);
-    },
-
-    // Particle system for hero background
-    initParticleSystem() {
-        const canvas = document.getElementById('hero-canvas');
-        if (!canvas) return;
-
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        let animationId;
-
-        // Set canvas size
-        const resizeCanvas = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        };
-
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        // Particle class
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
-                this.speedX = Math.random() * 2 - 1;
-                this.speedY = Math.random() * 2 - 1;
-                this.opacity = Math.random() * 0.5 + 0.2;
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                if (this.x > canvas.width || this.x < 0) {
-                    this.speedX = -this.speedX;
-                }
-                if (this.y > canvas.height || this.y < 0) {
-                    this.speedY = -this.speedY;
-                }
-            }
-
-            draw() {
-                ctx.save();
-                ctx.globalAlpha = this.opacity;
-                ctx.fillStyle = 'var(--primary-color)';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-            }
-        }
-
-        // Initialize particles
-        const initParticles = () => {
-            particles = [];
-            const particleCount = Math.floor((canvas.width * canvas.height) / 20000);
-            
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
-        };
-
-        // Animation loop
-        const animate = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
+    // Setup hover animations
+    setupHoverAnimations() {
+        // Card hover effects
+        const cards = document.querySelectorAll('.card, .project-card, .testimonial-card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                this.addClass(card, 'hover');
             });
+            
+            card.addEventListener('mouseleave', () => {
+                this.removeClass(card, 'hover');
+            });
+        });
 
-            animationId = requestAnimationFrame(animate);
-        };
+        // Button hover effects
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                this.addClass(button, 'btn-hover');
+            });
+            
+            button.addEventListener('mouseleave', () => {
+                this.removeClass(button, 'btn-hover');
+            });
+        });
+    },
 
-        initParticles();
-        animate();
+    // Setup particle effect for hero section
+    setupParticleEffect() {
+        const heroSection = document.querySelector('.hero');
+        if (!heroSection) return;
 
-        // Cleanup function
-        this.cleanupParticles = () => {
-            if (animationId) {
-                cancelAnimationFrame(animationId);
-            }
-        };
+        const particleContainer = document.createElement('div');
+        particleContainer.className = 'particles';
+        heroSection.appendChild(particleContainer);
+
+        // Create particles
+        for (let i = 0; i < this.config.particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            // Random position and size
+            const size = Math.random() * 4 + 1;
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            const duration = Math.random() * 20 + 10;
+            const delay = Math.random() * 5;
+
+            particle.style.cssText = `
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}%;
+                top: ${y}%;
+                animation-duration: ${duration}s;
+                animation-delay: ${delay}s;
+            `;
+
+            particleContainer.appendChild(particle);
+        }
     },
 
     // Animation methods
@@ -421,6 +470,17 @@ const Animations = {
         }, 50);
     },
 
+    rotateIn(element, duration = 800, delay = 0) {
+        element.style.transform = 'rotate(-10deg) scale(0.8)';
+        element.style.opacity = '0';
+        element.style.transition = `all ${duration}ms ${CONFIG.animations.easing} ${delay}ms`;
+        
+        setTimeout(() => {
+            element.style.transform = 'rotate(0deg) scale(1)';
+            element.style.opacity = '1';
+        }, delay);
+    },
+
     // Hover animations
     addHoverEffects() {
         const hoverElements = document.querySelectorAll('.btn, .skill-card, .project-card, .nav-link');
@@ -446,11 +506,35 @@ const Animations = {
         element.style.boxShadow = 'var(--shadow-sm)';
     },
 
+    // Utility methods
+    addClass(element, className) {
+        Utils.dom.addClass(element, className);
+    },
+
+    removeClass(element, className) {
+        Utils.dom.removeClass(element, className);
+    },
+
     // Cleanup function
     cleanup() {
-        if (this.cleanupParticles) {
-            this.cleanupParticles();
+        // Clear typing interval
+        if (this.state.typingInterval) {
+            clearTimeout(this.state.typingInterval);
         }
+
+        // Disconnect observer
+        if (this.state.observer) {
+            this.state.observer.disconnect();
+        }
+
+        // Clear particle animation
+        if (this.state.particleAnimation) {
+            cancelAnimationFrame(this.state.particleAnimation);
+        }
+
+        // Clear state
+        this.state.animatedElements.clear();
+        this.state.skillBarsAnimated.clear();
     }
 };
 
